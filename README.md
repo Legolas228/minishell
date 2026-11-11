@@ -1,60 +1,61 @@
-# Minishell - 42 Project | Bash Clone
+# Minishell
 
-## PROJECT DESCRIPTION
-Implementation of a minimal Unix shell in C with basic command execution, pipes, redirections, and environment variable handling.
+A minimal Unix shell written in C as part of the 42 curriculum. The project recreates some of the core behaviour of Bash, including command execution, pipes, redirections, environment variables and built-in commands.
 
-## TECHNICAL REQUIREMENTS
-- Language: C (Norm compliant)
-- Allowed functions: readline, fork, execve, pipe, dup2, etc.
-- Memory: Zero leaks (except readline's known leaks)
-- Signals: Handle ctrl-C/D/\
-- Makefile: all, clean, fclean, re rules
+## My contribution
 
-## MANDATORY FEATURES
-1. **Prompt**: Displays waiting symbol for new commands
-2. **History**: Stores and navigates past commands
-3. **Executables**: Finds programs via PATH or absolute paths
-4. **Quoting**:
-   - Single quotes: ignore all special chars
-   - Double quotes: ignore most special chars except $
-5. **Redirections**:
-   - < (input)
-   - > (output)
-   - << (heredoc)
-   - >> (append)
-6. **Pipes**: | (multiple commands chained)
-7. **Variables**:
-   - Environment ($VAR)
-   - Exit status ($?)
-8. **Signals**:
-   - ctrl-C: new prompt
-   - ctrl-D: exit
-   - ctrl-\: ignore
-9. **Builtins**:
-   - echo (-n option)
-   - cd
-   - pwd
-   - export
-   - unset
-   - env
-   - exit
+This was a collaborative project. I was primarily responsible for the parsing subsystem, working on how user input is interpreted and prepared before execution.
 
-## COMPILATION & USAGE
-1. Build: `make`
-2. Run: `./minishell`
-3. Example commands:
-   - `ls -la | grep .c > files.txt`
-   - `echo $PATH`
-   - `cd ~/projects && make`
+This involved handling commands, arguments, quotes, environment variables and shell operators, ensuring that the input could be correctly processed by the execution part of the shell.
 
-## ERROR HANDLING
-- Syntax errors (unclosed quotes, etc.)
-- Command not found
-- Permission denied
-- Clean exit on errors
+## Features
 
-## NOTES
-- Follows bash behavior for reference
-- Single global variable allowed for signals
-- Readline leaks are acceptable
-- Must handle edge cases
+- Command execution using `PATH` or absolute and relative paths
+- Pipes to connect multiple commands
+- Input, output and append redirections
+- Here-documents
+- Single and double quote handling
+- Environment variable expansion, including the exit status (`$?`)
+- Shell operators
+- Built-in commands: `echo`, `cd`, `pwd`, `export`, `unset`, `env` and `exit`
+- Command history and interactive prompt
+- Signal handling for interactive use
+
+## Memory management
+
+The project was designed to avoid memory leaks, with the exception of known leaks originating from the GNU Readline library.
+
+## Technologies
+
+- C
+- Unix processes and file descriptors
+- Pipes and redirections
+- Signals
+- GNU Readline
+- Make
+
+## Compilation and usage
+
+Clone the repository and compile the project:
+
+```bash
+make
+```
+
+Run the shell:
+
+```bash
+./minishell
+```
+
+Example commands:
+
+```bash
+ls -la | grep .c > files.txt
+echo $PATH
+cd ~/projects && make
+```
+
+## Context
+
+Minishell was developed as a team project at 42, with the goal of understanding how a Unix shell processes user input and manages command execution.
